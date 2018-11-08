@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang ="en">
+<head>
+	<meta charset = "utf-8">
+	<link rel ="stylesheet" type = "text/css" href ="something.css"/>
+	<script type = "text/javascript">
+	window.onload = function() {
+		
+
+		const responseOne = function(){
+				const wh = new XMLHttpRequest();
+				wh.open("GET","http://api.openweathermap.org/data/2.5/weather?zip=92127,us&APPID=ca3e947e8afd8e002af43502cfcf733d", false);
+				wh.send();
+				const jar = JSON.parse(wh.response);
+				const sdtempBox = document.getElementById("temp");
+				const sdwindBox = document.getElementById("wind");
+				const sdhumidBox = document.getElementById("humidity");
+				const temperature = Math.floor(jar.main.temp - 221.27);
+				const  wind =  jar.wind.speed;
+				const humidity = jar.main.humidity;
+				sdtempBox.innerHTML = "temperature:"+" "+temperature;
+				sdwindBox.innerHTML = "wind:" + " " + wind;
+				sdhumidBox.innerHTML = "humidity:"+ " " + humidity + "%";
+
+		}
+		const responseTwo = function() {
+				const wh = new XMLHttpRequest();
+				wh.open("GET","http://api.openweathermap.org/data/2.5/weather?zip=96701,us&APPID=ca3e947e8afd8e002af43502cfcf733d", false);
+				wh.send();
+				const jar = JSON.parse(wh.response);
+				const hwTemp = document.getElementById("hwTemp");
+				const hwWind = document.getElementById("hwWind");
+				const hwHumidity = document.getElementById("hwHumidity");
+				const temperature = Math.floor(jar.main.temp - 221.27);
+				const wind = jar.wind.speed;
+				const humidity = jar.main.humidity;
+				hwTemp.innerHTML = "temperature:"+ " " +temperature;
+				hwWind.innerHTML =  "wind:"+ " " + wind;
+				hwHumidity.innerHTML = "humidity:"+ " " + humidity+ "%";
+			}	
+		responseOne();
+		responseTwo();
+		
+		
+		
+
+}
+	</script>
+</head>
+<body>
+	<div id ="outerCont">
+			<h1 id ="one">San Diego Weather Forecast</h1>	
+		<div id ="container">
+			
+				<span id ="temp" class="box"></span>
+				<hr>
+				<span id ="wind" class="box"></span>
+				<hr>
+				<span id ="humidity" class="box"></span>
+		</div>
+		<hr>
+		<h1 id = "two">Hawaii Weather Forecast</h1>
+		<div id ="containerTwo">
+				<span id=hwTemp class="box"></span>
+				<hr>
+				<span id ="hwWind" class="box"></span>
+				<hr>
+				<span id ="hwHumidity" class="box"></span>
+		</div>
+	</div>
+</body>
+</html>
